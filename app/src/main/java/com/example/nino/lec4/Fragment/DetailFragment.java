@@ -16,6 +16,15 @@ import android.widget.TextView;
 import com.example.nino.lec4.data;
 
 public class DetailFragment extends Fragment {
+
+    public static DetailFragment newInstance (int index){
+        DetailFragment newFragment = new DetailFragment();
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        newFragment.setArguments(args);
+
+        return newFragment;
+    }
     public int getItemIndex(){
         return getArguments().getInt("index" , 0);
     }

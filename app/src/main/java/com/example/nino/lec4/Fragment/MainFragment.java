@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.telecom.Call;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,10 +24,16 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MainFragment extends ListFragment {
+    private boolean isDualPanel;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ArrayList<chModel> channelList = new ArrayList<>();
+
+        View detaildFrame = getActivity().findViewById(R.id.contents);
+        isDualPanel = detaildFrame!= null && detaildFrame.getVisibility() == View.VISIBLE;
+
         for(int i = 0; i < data.channels.length; i ++ ) {
             chModel newchannel = new chModel(data.channels[i], data.aida[i], data.images[i], data.detail[i]);
             channelList.add(newchannel);
@@ -63,9 +71,24 @@ public class MainFragment extends ListFragment {
     }
 
     private void showDetails(int index){
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), DetailsActivity.class);
-        intent.putExtra("index", index);
-        startActivity(intent);
+
+        if(isDualPanel){
+            DetailFragment detailsFragment = (DetailFragment) getFragmentManager().findFragmentById(R.id.contents);
+            if(detailsFragment == null || detailsFragment.getItemIndex() != index){
+                detailsFragment = DetailFragment.newInstance(index);
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.contents, detailsFragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+
+            }
+
+        }else {
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), DetailsActivity.class);
+            intent.putExtra("index", index);
+            startActivity(intent);
+        }
     }
 }
