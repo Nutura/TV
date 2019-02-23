@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
             channelList.add(newchannel);
         }
  //       ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , R.layout.list_item_layout, data.channels );
-        ListView listview = (ListView) findViewById(R.id.list);
+ //       ListView listview = (ListView) findViewById(R.id.list);
  //       listView.setAdapter(arrayAdapter);
 
         adapter adapteri = new adapter(this , channelList);
-        listview.setAdapter(adapteri);
+ //       listview.setAdapter(adapteri);
 
 
 
