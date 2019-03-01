@@ -6,8 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.telecom.Call;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -16,6 +20,7 @@ import android.widget.SimpleAdapter;
 import com.example.nino.lec4.DetailsActivity;
 import com.example.nino.lec4.MainActivity;
 import com.example.nino.lec4.R;
+import com.example.nino.lec4.RecyclerViewAdapter;
 import com.example.nino.lec4.chModel;
 import com.example.nino.lec4.data;
 
@@ -58,6 +63,7 @@ public class MainFragment extends ListFragment {
 
             aList.add(channels);
         }
+        
         String[] from = { "chan","id","image" };
         int[] to = { R.id.channel,R.id.aida,R.id.image};
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.list_item_layout, from, to);
@@ -91,4 +97,12 @@ public class MainFragment extends ListFragment {
             startActivity(intent);
         }
     }
+
+    public void initRecycleView(){
+        RecyclerView recyclerView = (R.id.recyclerView);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(r);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
 }

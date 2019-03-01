@@ -1,12 +1,12 @@
 package com.example.nino.lec4;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import java.util.ArrayList;
 
@@ -48,6 +48,8 @@ public class adapter  extends BaseAdapter {
 
             holder = new ViewHolder();
 
+
+
             holder.icon = icon;
             holder.channel = channel;
             holder.aida = aidi;
@@ -60,7 +62,6 @@ public class adapter  extends BaseAdapter {
         }
 
         chModel chmodel = (chModel) getItem(position);
-
 
         holder.icon.setImageResource(chmodel.getImage());
         holder.channel.setText(chmodel.getChannel());
