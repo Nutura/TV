@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +52,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         chModel chmodel = (chModel) getItem(position);
 
-        holder.text.setText(chModel.class.getName());
+        holder.text.setText(chmodel.getChannel());
+        holder.icon.setImageResource(chmodel.getImage());
+
         //On click listener for fragment
 /*        viewHolder.parentlayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
         CircleImageView icon;
         TextView text;
-        RelativeLayout parentlayout;
+        LinearLayout parentlayout;
 
 
         public ViewHolder(@NonNull View itemView) {
