@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         RecyclerView  recyclerView = findViewById(R.id.recyclerView);
+
 /*        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,mImageURL,mNames);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
@@ -38,8 +39,22 @@ public class MainActivity extends AppCompatActivity {
 
         adapter adapteri = new adapter(this , channelList);
  //       listview.setAdapter(adapteri);
+        try {
+            initRecycleView();
+        }catch (Exception e ){};
 
 
+    }
+    public void initRecycleView(){
+        ArrayList<chModel> channelList = new ArrayList<>();
+        for(int i = 0; i < data.channels.length; i ++ ) {
+            chModel newchannel = new chModel(data.channels[i], data.aida[i], data.images[i], data.detail[i]);
+            channelList.add(newchannel);
+        }
 
+        RecyclerView  recyclerView = findViewById(R.id.recyclerView);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, channelList );
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.nino.lec4;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,29 +21,37 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
-    private ArrayList<chModel> mChannelList;
+    private ArrayList<chModel> mChannelList = new ArrayList<>();
     private Context mContext;
 
 
     public RecyclerViewAdapter (Context Context, ArrayList<chModel> ChanneLlist){
-        Context = mContext;
-        ChanneLlist = mChannelList;
+        mContext = Context;
+        mChannelList = ChanneLlist;
     }
-
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup , int viewType){
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_layout, viewGroup, false);
+    @NonNull
+    public ViewHolder onCreateViewHolder(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+  //      View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view, viewGroup, false);
+        View view = inflater.inflate(R.layout.recycle_view, container, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+       View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_view, viewGroup, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder called");
 
         chModel chmodel = (chModel) getItem(position);
 
-        viewHolder.text.setText(chModel.class.getName());
+        holder.text.setText(chModel.class.getName());
         //On click listener for fragment
 /*        viewHolder.parentlayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +86,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            icon = itemView.findViewById(R.id.image);
-            text = itemView.findViewById(R.id.text);
+            icon = itemView.findViewById(R.id.imageRecycle);
+            text = itemView.findViewById(R.id.channelRecycle);
             parentlayout = itemView.findViewById(R.id.recycleLayout);
         }
     }

@@ -98,11 +98,6 @@ public class MainFragment extends ListFragment {
         }
     }
 
-    public void initRecycleView(){
-        RecyclerView recyclerView = (R.id.recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(r);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
+
 
 }
