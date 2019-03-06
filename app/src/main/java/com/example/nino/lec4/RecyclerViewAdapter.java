@@ -50,19 +50,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder called");
 
-        chModel chmodel = (chModel) getItem(position);
+        final chModel chmodel = (chModel) getItem(position);
 
         holder.text.setText(chmodel.getChannel());
         holder.icon.setImageResource(chmodel.getImage());
 
         //On click listener for fragment
-/*        viewHolder.parentlayout.setOnClickListener(new View.OnClickListener() {
+        holder.parentlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
-                Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on: " + chmodel.getChannel());
+                Toast.makeText(mContext, chmodel.getDetail(), Toast.LENGTH_SHORT).show();
+
             }
-        });*/
+        });
 
     }
 

@@ -19,42 +19,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ArrayList<chModel> channelList = new ArrayList<>();
-        for(int i = 0; i < data.channels.length; i ++ ) {
+        for (int i = 0; i < data.channels.length; i++) {
             chModel newchannel = new chModel(data.channels[i], data.aida[i], data.images[i], data.detail[i]);
             channelList.add(newchannel);
         }
 
-        RecyclerView  recyclerView = findViewById(R.id.recyclerView);
 
 /*        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,mImageURL,mNames);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
 
 
+        //       ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , R.layout.list_item_layout, data.channels );
+        //       ListView listview = (ListView) findViewById(R.id.list);
+        //       listView.setAdapter(arrayAdapter);
 
-
- //       ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , R.layout.list_item_layout, data.channels );
- //       ListView listview = (ListView) findViewById(R.id.list);
- //       listView.setAdapter(arrayAdapter);
-
-        adapter adapteri = new adapter(this , channelList);
- //       listview.setAdapter(adapteri);
-        try {
-            initRecycleView();
-        }catch (Exception e ){};
-
-
-    }
-    public void initRecycleView(){
-        ArrayList<chModel> channelList = new ArrayList<>();
-        for(int i = 0; i < data.channels.length; i ++ ) {
-            chModel newchannel = new chModel(data.channels[i], data.aida[i], data.images[i], data.detail[i]);
-            channelList.add(newchannel);
-        }
-
-        RecyclerView  recyclerView = findViewById(R.id.recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, channelList );
+        adapter adapteri = new adapter(this, channelList);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, channelList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //       listview.setAdapter(adapteri);
+
     }
 }
