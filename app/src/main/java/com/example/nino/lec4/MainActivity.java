@@ -29,16 +29,6 @@ public class MainActivity extends AppCompatActivity {
             channelList.add(newchannel);
         }
 
-
-/*        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,mImageURL,mNames);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
-
-
-        //       ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , R.layout.list_item_layout, data.channels );
-        //       ListView listview = (ListView) findViewById(R.id.list);
-        //       listView.setAdapter(arrayAdapter);
-
         adapter adapteri = new adapter(this, channelList);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, channelList);
@@ -52,12 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 MainFragment.deleteAdd(true);
-
-
             }
         });
-
-
-
     }
 }

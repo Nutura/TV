@@ -49,15 +49,6 @@ public class MainFragment extends ListFragment {
         for(int i = 0; i < data.channels.length; i ++ ) {
             chModel newchannel = new chModel(data.channels[i], data.aida[i], data.images[i], data.detail[i]);
             channelList.add(newchannel);
-
-
-           // setListAdapter( new  ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, data.channels));
-//            Fragment listview = (Fragment) findViewById(R.id.mainFragment;
-//            listView.setAdapter(arrayAdapter);
-
-            //       ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , R.layout.list_item_layout, data.channels );
-            //       ListView listview = (ListView) findViewById(R.id.list);
-            //       listView.setAdapter(arrayAdapter);
         }
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
 
