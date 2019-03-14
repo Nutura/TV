@@ -2,6 +2,7 @@ package com.example.nino.lec4.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +13,10 @@ import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -30,11 +34,14 @@ import java.util.List;
 
 public class MainFragment extends ListFragment {
     private boolean isDualPanel;
+    private int currentItemIndex = 0;
+    static ArrayList<chModel> channelList = new ArrayList<>();
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ArrayList<chModel> channelList = new ArrayList<>();
+//        ArrayList<chModel> channelList = new ArrayList<>();
 
         View detaildFrame = getActivity().findViewById(R.id.contents);
         isDualPanel = detaildFrame!= null && detaildFrame.getVisibility() == View.VISIBLE;
@@ -68,6 +75,21 @@ public class MainFragment extends ListFragment {
         int[] to = { R.id.channel,R.id.aida,R.id.image};
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.list_item_layout, from, to);
         setListAdapter(adapter);
+
+        if(savedInstanceState != null){
+            currentItemIndex = savedInstanceState.getInt("Our choice ", 0);
+        }
+        if(isDualPanel){
+            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            //showDetails();
+        }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("Our Choice" , currentItemIndex);
     }
 
     @Override
@@ -77,6 +99,7 @@ public class MainFragment extends ListFragment {
     }
 
     private void showDetails(int index){
+        currentItemIndex = index;
 
         if(isDualPanel){
             DetailFragment detailsFragment = (DetailFragment) getFragmentManager().findFragmentById(R.id.contents);
@@ -97,6 +120,15 @@ public class MainFragment extends ListFragment {
             startActivity(intent);
         }
     }
+
+
+    public static void deleteAdd(boolean show) {
+        if(show){
+            Log.d("remove list","in function remove list");
+            channelList.clear();
+        }
+    }
+
 
 
 

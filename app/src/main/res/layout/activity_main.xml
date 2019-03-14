@@ -9,19 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/titles">
-        <TextView
+        <Button
+            android:id="@+id/listViewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="listView"
+            android:text="Show Only listView"
             android:layout_margin="12dp"
             android:textSize="18sp"
             android:layout_gravity="center"/>
-        <TextView
+        <Button
+            android:id="@+id/recyclerViewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RecycleView"
+            android:text="Show Only RecycleView"
             android:layout_margin="12dp"
-            android:paddingLeft="40dp"
             android:textSize="18sp"
             android:layout_gravity="center"/>
 
